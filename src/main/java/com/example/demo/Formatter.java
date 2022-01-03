@@ -3,6 +3,7 @@ package com.example.demo;
 
 import org.joda.time.LocalDate;
 
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -21,5 +22,9 @@ public class Formatter {
 
     public static String getFullLocation(String street,String home, String flat) {
         return street + "-номер улицы " + home + "-дом " + flat + "-квартира";
+    }
+
+    public static String ISOtoUTF(String str){
+        return new String(str.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
     }
 }

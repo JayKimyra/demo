@@ -22,9 +22,9 @@ public class PdfCreatorServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
-        String streetId = new String(request.getParameter("location-street-id").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String home = new String(request.getParameter("location-home").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String flat = new String(request.getParameter("location-flat").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        String streetId = Formatter.ISOtoUTF(request.getParameter("location-street-id"));
+        String home = Formatter.ISOtoUTF(request.getParameter("location-home"));
+        String flat = Formatter.ISOtoUTF(request.getParameter("location-flat"));
         String location = Formatter.getFullLocation(streetId,home,flat);
         String directory = Formatter.getDirectoryName(new LocalDate(), streetId);
         String fileName = Formatter.getFileName(location);
