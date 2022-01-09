@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_test?useSSL=false&amp;serverTimezone=UTC</property>
@@ -24,7 +24,6 @@
         <mapping class="com.example.demo.hibernate.Street" />
         <mapping class="com.example.demo.hibernate.User" />
         <mapping class="com.example.demo.hibernate.FileEntity" />
-        <mapping class="com.example.demo.hibernate.City" />
 
     </session-factory>
 </hibernate-configuration>

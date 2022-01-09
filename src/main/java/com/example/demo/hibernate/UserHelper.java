@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class UserHelper {
-    static boolean save(User user){
+    static public boolean save(User user){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try{
@@ -26,7 +26,7 @@ public class UserHelper {
             session.close();
         }
     }
-    static boolean saveList(List<User> users){
+    static public boolean saveList(List<User> users){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -48,7 +48,7 @@ public class UserHelper {
 
 
     //смотрим на колонку field и выбираем те поля для которых критерий равен criteria
-    static List<User> getListByParameter(String field, String criteria){
+    static public List<User> getListByParameter(String field, String criteria){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -58,6 +58,16 @@ public class UserHelper {
         personCriteria.where(cb.equal(personRoot.get(field),criteria));
 
 
+        return session.createQuery(personCriteria)
+                .getResultList();
+    }
+    static public List<User> getFullList(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> personCriteria = cb.createQuery(User.class);
+        Root<User> personRoot = personCriteria.from(User.class);
+        personCriteria.select(personRoot);
         return session.createQuery(personCriteria)
                 .getResultList();
     }
