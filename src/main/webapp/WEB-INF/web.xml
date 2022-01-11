@@ -8,10 +8,18 @@
         <servlet-name>PdfCreator</servlet-name>
         <servlet-class>com.example.demo.PdfCreatorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <servlet-class>com.example.demo.DownloadFileServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>PdfCreator</servlet-name>
         <url-pattern>/pdf-request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <url-pattern>/DownloadFileServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

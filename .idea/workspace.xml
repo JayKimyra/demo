@@ -9,14 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0cf0fd8-33ae-453e-af8e-b12274964435" name="Changes" comment="add Formatter and PdfCreatorServlet&#10;add mySql tables and hibernate package">
+    <list default="true" id="d0cf0fd8-33ae-453e-af8e-b12274964435" name="Changes" comment="hibernate changes">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_acl_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_taglibs_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_2_0_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DownloadFileServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/PasswordEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/PdfCreatorServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/PdfCreatorServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/UserHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/hibernate/UserHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +87,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/hibernate" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/demo-1.0-SNAPSHOT" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -85,21 +103,21 @@
       <recent name="com.example.demo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\target\demo-1.0-SNAPSHOT" />
+      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp" />
+      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\target\demo-1.0-SNAPSHOT\WEB-INF" />
       <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\java\hibernate" />
       <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\java\com\example\demo" />
-      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\resources" />
-      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\js\Chosen" />
-      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\target\demo-1.0-SNAPSHOT" />
+      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\target\demo-1.0-SNAPSHOT\WEB-INF" />
       <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\WEB-INF" />
       <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\css" />
       <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp" />
-      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\WEB-INF\js" />
-      <recent name="C:\Users\Admin\Desktop\JavaProjects\Новая папка\demo\src\main\webapp\js" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.53">
     <configuration name="Formatter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.demo.Formatter" />
       <module name="demo" />
@@ -263,7 +281,8 @@
       <workItem from="1641174138648" duration="590000" />
       <workItem from="1641248556565" duration="2634000" />
       <workItem from="1641596265345" duration="3769000" />
-      <workItem from="1641702069225" duration="3488000" />
+      <workItem from="1641702069225" duration="4302000" />
+      <workItem from="1641904875051" duration="15582000" />
     </task>
     <task id="LOCAL-00001" summary="add Formatter and PdfCreatorServlet">
       <created>1641251129828</created>
@@ -279,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641599957968</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="hibernate changes">
+      <created>1641705770674</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641705770674</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,7 +329,8 @@
     </ignored-roots>
     <MESSAGE value="add Formatter and PdfCreatorServlet" />
     <MESSAGE value="add Formatter and PdfCreatorServlet&#10;add mySql tables and hibernate package" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Formatter and PdfCreatorServlet&#10;add mySql tables and hibernate package" />
+    <MESSAGE value="hibernate changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="hibernate changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

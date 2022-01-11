@@ -15,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true,length = 251)
+    @Column(unique = true,length = 250)
     private String login;
     @Column
     private String firstname;
@@ -29,7 +29,8 @@ public class User {
         this.setLogin(login);
         this.setFirstname(firstname);
         this.setLastname(lastname);
-        this.setPassword(password);
+        String pass = password;
+        this.setPassword(pass);
     }
 
     public void setFirstname(String firstname) {

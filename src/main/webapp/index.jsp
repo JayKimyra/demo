@@ -1,5 +1,4 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.demo.hibernate.City" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,12 +19,7 @@
         <select class="chosen-select" name="location-street-id" tabindex="2" id="location-street-id" data-placeholder="Выберите город">
             <option value=""></option>
             <option value="367">Абаза</option>
-            <%
-                List<City> cities = com.example.demo.hibernate.CityHelper.getFullList();
-                for (City city:cities) {
-                    out.print("<option value=\" " + city.getId() + "\"> "+ city.getName() + "</option>");
-                }
-            %>
+
         </select>
         <label for="location-street-id">Улица</label>
     </div>
