@@ -23,7 +23,7 @@
 
         <mapping class="com.example.demo.hibernate.Street" />
         <mapping class="com.example.demo.hibernate.User" />
-        <mapping class="com.example.demo.hibernate.FileEntity" />
+        <mapping class="com.example.demo.hibernate.Record" />
 
     </session-factory>
 </hibernate-configuration>

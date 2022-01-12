@@ -7,8 +7,11 @@ package com.example.demo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import com.example.demo.hibernate.Record;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -50,8 +53,8 @@ public class PdfManager {
             if (!directory.exists()) {
                 directory.mkdirs();
             }
-            String var10001 = directory.getAbsolutePath();
-            document.save(var10001 + "\\" + fileName + ".pdf");
+            String absolutePath = directory.getAbsolutePath();
+            document.save(absolutePath + "\\" + fileName + ".pdf");
             document.close();
         } catch (IOException e) {
             e.printStackTrace();

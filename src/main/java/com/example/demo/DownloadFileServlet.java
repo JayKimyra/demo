@@ -9,7 +9,12 @@ import java.io.*;
                          HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         //response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-disposition", "attachment; filename=data.pdf");
+        String filename = request.getParameter("name");
+        if (filename == null){
+            response.sendError(404);
+            return;
+        }
+        response.setHeader("Content-disposition", "attachment; filename=" + filename);
 
         try(FileInputStream in = new FileInputStream("C:\\Users\\Admin\\Desktop\\Изучаем_Java_EE_7.pdf");
             OutputStream out = response.getOutputStream()) {
@@ -17,9 +22,11 @@ import java.io.*;
             byte[] buffer = new byte[1048];
 
             int numBytesRead;
+            System.out.println("1");
             while ((numBytesRead = in.read(buffer)) > 0) {
                 out.write(buffer, 0, numBytesRead);
             }
+            System.out.println("2");
         }
     }
 }

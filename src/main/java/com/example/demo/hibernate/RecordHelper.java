@@ -8,12 +8,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class FileEntityHelper {
-    static boolean save(FileEntity fileEntity){
+public class RecordHelper {
+    public static boolean save(Record record){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try{
-            session.save(fileEntity);
+            session.save(record);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -26,12 +26,12 @@ public class FileEntityHelper {
             session.close();
         }
     }
-    static boolean saveList(List<FileEntity> fileEntitys){
+    static boolean saveList(List<Record> records){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            for(FileEntity fileEntity : fileEntitys){
-                session.save(fileEntity);
+            for(Record record : records){
+                session.save(record);
             }
             transaction.commit();
             return true;
@@ -48,12 +48,12 @@ public class FileEntityHelper {
 
 
     //смотрим на колонку field и выбираем те поля для которых критерий равен criteria
-    static List<FileEntity> getListByParameter(String field, String criteria){
+    static List<Record> getListByParameter(String field, String criteria){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<FileEntity> personCriteria = cb.createQuery(FileEntity.class);
-        Root<FileEntity> personRoot = personCriteria.from(FileEntity.class);
+        CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
+        Root<Record> personRoot = personCriteria.from(Record.class);
         personCriteria.select(personRoot);
         personCriteria.where(cb.equal(personRoot.get(field),criteria));
 
@@ -62,12 +62,12 @@ public class FileEntityHelper {
                 .getResultList();
     }
 
-    static List<FileEntity> getFullList(){
+    static List<Record> getFullList(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<FileEntity> personCriteria = cb.createQuery(FileEntity.class);
-        Root<FileEntity> personRoot = personCriteria.from(FileEntity.class);
+        CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
+        Root<Record> personRoot = personCriteria.from(Record.class);
         personCriteria.select(personRoot);
         return session.createQuery(personCriteria)
                 .getResultList();

@@ -9,8 +9,8 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-@Table(name = "note")
-public class FileEntity {
+@Table(name = "records")
+public class Record {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,8 @@ public class FileEntity {
     @Column
     private String path;
 
-    public FileEntity(){}
-    public FileEntity(Date date, Long userId, Long streetId, String name, String path){
+    public Record(){}
+    public Record(Date date, Long userId, Long streetId, String name, String path){
         this.setDate(date);
         this.setUserId(userId);
         this.setStreetId(streetId);

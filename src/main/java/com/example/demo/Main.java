@@ -14,7 +14,6 @@ public class Main {
         UserHelper.save(new User("логин","kirill","gabov","qwerty"));
         List<User> users = UserHelper.getFullList();
         users.forEach(System.out::println);
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
         System.out.println();
 
