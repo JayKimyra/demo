@@ -1,13 +1,27 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../../../../../../1/ОГЭ/ПТ%2019%2000/ДЗ_9/JavaProjects/Новая%20папка/demo/src/main/webapp/js/chosen/chosen.css">
+    <link rel="stylesheet" href="../js/chosen/chosen.css">
     <meta charset="utf-8" />
     <title>Главная</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://malsup.github.io/jquery.form.js"></script>
 </head>
 <body>
-
+<script>
+    $(function() {
+        $('#upload-container').ajaxForm({
+            success: function(msg) {
+                alert(msg);
+            },
+            error: function(msg) {
+                $("#upload-error").text("Couldn't upload file");
+            }
+        });
+    });
+</script>
 <form id="upload-container" method="POST" action="/pdf-request" enctype="multipart/form-data">
     <div>
         <input id="file-input" type="file" name="files" multiple>
@@ -17,7 +31,7 @@
     <div>
         <select class="chosen-select" name="location-street-id" tabindex="2" id="location-street-id" data-placeholder="Выберите город">
             <option value=""></option>
-            <option value="367">Абаза</option>
+            <option value="1">Абаза</option>
             <option value="340">Абакан</option>
             <option value="369">Абдулино</option>
             <option value="370">Абинск</option>
@@ -1157,11 +1171,25 @@
 
 
 
-    <script src="../../../../../../../1/ОГЭ/ПТ%2019%2000/ДЗ_9/JavaProjects/Новая%20папка/demo/src/main/webapp/js/chosen/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="../../../../../../../1/ОГЭ/ПТ%2019%2000/ДЗ_9/JavaProjects/Новая%20папка/demo/src/main/webapp/js/chosen/chosen.jquery.js" type="text/javascript"></script>
-    <script src="../../../../../../../1/ОГЭ/ПТ%2019%2000/ДЗ_9/JavaProjects/Новая%20папка/demo/src/main/webapp/js/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-    <script src="../../../../../../../1/ОГЭ/ПТ%2019%2000/ДЗ_9/JavaProjects/Новая%20папка/demo/src/main/webapp/js/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/chosen/docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="../js/chosen/chosen.jquery.js" type="text/javascript"></script>
+    <script src="../js/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/chosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
     <button type="submit">SEND!</button>
+</form>
+
+<form id="auth-container" method="POST" action="/auth" enctype="text/plain">
+    <br>
+    <div>
+        <input id="log" type="text" name="login">
+        <label for="log">login</label>
+    </div>
+    <div>
+        <input id="pass" type="password" name="password">
+        <label for="pass">password</label>
+    </div>
+
+    <button type="reset">SEND!</button>
 </form>
 </body>
 </html>

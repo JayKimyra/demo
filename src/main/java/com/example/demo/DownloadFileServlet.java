@@ -1,10 +1,11 @@
 package com.example.demo;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
-
-        public class DownloadFileServlet extends HttpServlet{
+@WebServlet("/DownloadFileServlet")
+public class DownloadFileServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");

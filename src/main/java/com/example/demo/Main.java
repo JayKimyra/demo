@@ -10,12 +10,10 @@ import java.util.List;
 
 
 public class Main {
-    public static void main(String[] args){
-        UserHelper.save(new User("логин","kirill","gabov","qwerty"));
-        List<User> users = UserHelper.getFullList();
-        users.forEach(System.out::println);
-
-        System.out.println();
-
+    public static void main(String[] args) throws Exception {
+        User user = new User("123","kirill","gabov","111","admin");
+        User user2 = new User("321","kirill","gabov","1111","admin");
+        UserHelper.save(user);
+        UserHelper.save(user2);
     }
 }

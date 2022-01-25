@@ -62,14 +62,15 @@ public class RecordHelper {
                 .getResultList();
     }
 
-    static List<Record> getFullList(){
+    public static List<Record> getFullList(){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
+        session.beginTransaction();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
         Root<Record> personRoot = personCriteria.from(Record.class);
         personCriteria.select(personRoot);
-        return session.createQuery(personCriteria)
-                .getResultList();
+        List<Record> result = session.createQuery(personCriteria).getResultList();
+        session.close();
+        return result;
     }
 }

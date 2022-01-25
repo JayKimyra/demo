@@ -1,5 +1,6 @@
 package com.example.demo.hibernate;
 
+import com.example.demo.Password;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,8 @@ public class User {
     @Column(unique = true,length = 250)
     private String login;
     @Column
+    private String role;
+    @Column
     private String firstname;
     @Column
     private String lastname;
@@ -25,12 +28,13 @@ public class User {
     private String password;
 
     public User(){}
-    public User(String login, String firstname, String lastname, String password){
+    public User(String login, String firstname, String lastname, String password,String role) throws Exception {
         this.setLogin(login);
         this.setFirstname(firstname);
         this.setLastname(lastname);
-        String pass = password;
+        String pass = Password.getSaltedHash(password);
         this.setPassword(pass);
+        this.role = role;
     }
 
     public void setFirstname(String firstname) {
@@ -55,4 +59,6 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 }
