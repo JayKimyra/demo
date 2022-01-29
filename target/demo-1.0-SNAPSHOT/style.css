@@ -1,0 +1,63 @@
+/*--------------------------------------------*/
+/*--------------------TAGS--------------------*/
+/*--------------------------------------------*/
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+/*-----------------------------------------------*/
+/*--------------------CLASSES--------------------*/
+/*-----------------------------------------------*/
+
+.header-footer {
+    height: 75px;
+    width: 100%;
+}
+
+.main {
+    height: 800px;
+}
+
+.cont-log-form {
+    height: 80%;
+    width: 70%;
+    margin-top: 80px;
+    margin-left: 15%;
+    padding: 20% 10% 20% 10%;
+    border: solid 2px black;
+    border-radius: 80px;
+}
+
+.err-style {
+    color: red;
+    font-size: 20px;
+}
+
+.winds {
+    height: 100%;
+    border-color: #c8c9ca;
+}
+
+.winds-right {
+    border-right-style: solid;
+    border-right-width: 2px;
+}
+
+.winds-left {
+    border-left-style: solid;
+    border-left-width: 2px;
+}
+
+tr.tr-text-center th{
+    text-align: center;
+}
+
+tr.tr-text-center td{
+    text-align: center;
+}
+
+.btn-send {
+    background-color: #dee2e6;
+}

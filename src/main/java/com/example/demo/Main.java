@@ -1,19 +1,37 @@
 package com.example.demo;
 
-import com.example.demo.hibernate.UserHelper;
-import com.example.demo.hibernate.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.example.demo.hibernate.entities.Record;
+import com.example.demo.hibernate.entities.Street;
+import com.example.demo.hibernate.entities.User;
+import com.example.demo.hibernate.entityHelpers.RecordHelper;
+import com.example.demo.hibernate.entityHelpers.StreetHelper;
+import com.example.demo.hibernate.entityHelpers.UserHelper;
 
-import java.io.FileNotFoundException;
-import java.lang.instrument.Instrumentation;
-import java.util.List;
+import java.io.File;
+import java.sql.Timestamp;
+import java.util.*;
 
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        User user = new User("123","kirill","gabov","111","admin");
-        User user2 = new User("321","kirill","gabov","1111","admin");
+        /*Scanner scanner = new Scanner(new File("C:\\Users\\Admin\\Desktop\\Vse_ulitsy_Petrozavodska.txt"));
+        List<Street> list = new ArrayList<>();
+        while (scanner.hasNext()){
+            String data = scanner.nextLine();
+            list.add(new Street(data));
+        }
+        StreetHelper.saveList(list);
+
+        User user = new User("123","kirill","gabov", "111","admin");
         UserHelper.save(user);
-        UserHelper.save(user2);
+        user = new User("sanya","sanya","egorov", "333","admin");
+        UserHelper.save(user);
+        RecordHelper.save(new Record(new Timestamp(System.currentTimeMillis()),new User(),StreetHelper.getById(1L),"1","1","1","1"));
+        Record record = RecordHelper.getById(Long.valueOf("1"));
+        System.out.println(record);*/
+        Record record = RecordHelper.getById(Long.valueOf("2"));
+        System.out.println(record.getStreet());
     }
+
+
 }

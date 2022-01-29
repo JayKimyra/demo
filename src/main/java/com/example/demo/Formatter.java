@@ -1,11 +1,9 @@
 package com.example.demo;
 
 
-import com.example.demo.hibernate.StreetHelper;
-import org.joda.time.LocalDate;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -14,11 +12,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Formatter {
@@ -39,12 +34,11 @@ public class Formatter {
     public static String ISOtoUTF(String str){
         return new String(str.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
     }
-    public static List<File> getFilesFromParts(HttpServletRequest request) {
-        ArrayList files = new ArrayList();
+    public static List<File> getFilesFromParts(HttpServletRequest request, HttpServletResponse response) {
+        ArrayList<File> files = new ArrayList<>();
         try {
-            List<Part> fileParts = request.getParts().stream().filter((part) -> {
-                return "files".equals(part.getName());
-            }).toList();
+            request.getParts().forEach(System.out::println);
+            List<Part> fileParts = request.getParts().stream().filter((part) -> "files".equals(part.getName())).toList();
             System.out.println("Found " + fileParts.size() + " files:");
             for (Part filePart : fileParts){
                 String imgName = Formatter.ISOtoUTF(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());

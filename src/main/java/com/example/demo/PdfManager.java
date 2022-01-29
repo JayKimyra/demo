@@ -21,7 +21,7 @@ public class PdfManager {
     public PdfManager() {
     }
 
-    static boolean createPdf(List<File> files, String folder, String fileName) {
+    public static boolean createPdf(List<File> files, String folder, String fileName) {
 
         PDDocument document = new PDDocument();
         for (File file : files){
