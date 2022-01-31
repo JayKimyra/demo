@@ -13,8 +13,8 @@
     <title>Получение</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="resources/style.css">
-    <link rel="stylesheet" href="resources/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./select2/dist/css/select2.min.css">
 </head>
 <body class="w-100">
 <%@include file="header.jsp" %>
@@ -22,7 +22,7 @@
 <div class="container-fluid main">
     <div class="row padding h-100">
         <div class="col-md-9 winds-right winds">
-            <table class="table table-bordered">
+            <table id="tbl" class="table table-bordered">
                 <thead>
                 <tr class="tr-text-center">
                     <th scope="col">#</th>
@@ -37,6 +37,7 @@
                 <tbody id="posts">
                 </tbody>
             </table>
+            <button onclick="downloadAllPosts()">Скачать</button>
         </div>
 
         <div class="col-md-3 winds-left winds">
@@ -82,7 +83,7 @@
                                         <option value=""></option>
                                         <option value="all">Все</option>
                                         <% for (int i = 0; i < streets.size(); i++) { %>
-                                        <option value="<%= i %>"><%= streets.get(i).getName() %></option>
+                                        <option value="<%= streets.get(i).getId() %>"><%= streets.get(i).getName() %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -100,7 +101,7 @@
                                     <option value=""></option>
                                     <option value="all">Все</option>
                                     <% for (int i = 0; i < users.size(); i++) { %>
-                                    <option value="<%= i %>"><%= users.get(i).getFirstname() %></option>
+                                    <option value="<%= users.get(i).getId() %>"><%= users.get(i).getFirstname() %></option>
                                     <% } %>
                                 </select>
                             </div>
@@ -117,7 +118,7 @@
 </div>
 <hr class="my-1">
 <%@include file="footer.jsp" %>
-<script src="./js/functions.js"></script>
+<script src="./js/functions.js" charset="utf-8"></script>
 <script src="./select2/dist/js/select2.min.js"></script>
 <script src="./select2/dist/js/i18n/ru.js"></script>
 </body>

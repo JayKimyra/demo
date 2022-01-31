@@ -82,8 +82,9 @@ function getPosts() {
             var place = document.getElementById("posts");
             place.innerHTML = resultText;
         },
-        error: function () {
-            alert("Some error");
+        error: function (response) {
+            alert(response.getResponseHeader('error_message'))
+            //alert("Some error");
             // var errField = document.getElementById("error-field");
             // errField.innerText = "Логин или пароль введён неверно!";
         }
@@ -105,3 +106,118 @@ $(document).ready(function() {
         language: "ru"
     });
 });
+
+$(document).ready(function() {
+    $('.select-role').select2({
+        placeholder: "Выберите уровень доступа",
+        maximumSelectionLength: 2,
+        language: "ru"
+    });
+});
+function download(id) {
+    window.open('downloadfileservlet?recordId=' + id, '_blank');
+}
+
+$('body').on('click', '.pass-control', function(){
+    var passInp = $('#pass-input');
+
+    if (passInp.attr('type') === 'password'){
+        $('#pass-control').addClass('view');
+        $('#pass-input').attr('type', 'text');
+    } else {
+        $('#pass-control').removeClass('view');
+        $('#pass-input').attr('type', 'password');
+    }
+    return false;
+});
+
+
+function registration() {
+    event.preventDefault();
+
+    var errField = document.getElementById("error-field");
+    errField.innerText = "";
+
+    if (checkForm()) {
+        return;
+    }
+
+    console.log('Works!');
+    var formData = $('form').serialize();
+
+    $.ajax({
+        data: formData,
+        url: 'addnewuser',
+        method: 'POST',
+        success: function (resultText) {
+            alert("Success");
+        },
+        error: function () {
+            alert("Some error");
+            // var errField = document.getElementById("error-field");
+            // errField.innerText = "Логин или пароль введён неверно!";
+        }
+    });
+}
+
+function checkForm() {
+    var form = document.getElementById("form");
+    var fields = form.querySelectorAll('.field');
+    var files = document.getElementById("files");
+
+    if (checkFiles(files)) {
+        document.getElementById('error-field').innerText = "Файлы должны быть картинками!";
+        return true;
+    }
+
+    for (var i = 0; i < fields.length; i++) {
+        if (!fields[i].value) {
+            document.getElementById('error-field').innerText = "Поля не могут быть пустыми!";
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkForm() {
+    var form = document.getElementById("form");
+    var fields = form.querySelectorAll('.field');
+    var files = document.getElementById("files");
+
+    if (files !== null && checkFiles(files)) {
+        document.getElementById('error-field').innerText = "Файлы должны быть картинками!";
+        return true;
+    }
+
+    for (var i = 0; i < fields.length; i++) {
+        if (!fields[i].value) {
+            document.getElementById('error-field').innerText = "Поля не могут быть пустыми!";
+            return true;
+        }
+    }
+    return false;
+}
+
+function downloadAllPosts() {
+    event.preventDefault();
+
+    var arrStreets = [];
+
+    $('#tbl > tbody  > tr').each(
+        function() {
+            arrStreets.push($(this).find('th').text());
+        })
+
+    console.log(arrStreets)
+
+    var req = "";
+    for (var i = 0; i < arrStreets.length; i++) {
+        req += 'records=' + arrStreets[i];
+
+        if (i !== arrStreets.length - 1) {
+            req += '&';
+        }
+    }
+
+    window.open('downloadfiles?' + req, '_blank');
+}

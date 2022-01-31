@@ -1,5 +1,6 @@
 package servlets.pages;
 
+import com.example.demo.hibernate.entities.Role;
 import com.example.demo.hibernate.entities.User;
 
 import javax.servlet.ServletException;
@@ -10,17 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
-@WebServlet("/index.jsp")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/registration")
+public class RegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("servlets.pages.HomeServlet");
+        System.out.println("servlets.pages.RegistrationServlet");
         response.setContentType("text/html;charset=UTF-8");
         User user = (User) request.getSession().getAttribute("user");
         if (user == null){
-            request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
-        }
-        else{
-            response.sendRedirect("/send");
+            response.sendError(403);
+        }else {
+            if (user.getRole() == Role.ADMIN){
+                request.getRequestDispatcher("WEB-INF/registration.jsp").forward(request, response);
+            }
+            else{
+                System.out.println("Вы не имеете права быть здесь");
+                response.sendError(403);
+            }
         }
     }
 }

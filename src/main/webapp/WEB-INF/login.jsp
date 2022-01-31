@@ -34,11 +34,12 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-2 d-flex justify-content-center">
-                                    <img src="images/lock_0.png" id="lock" alt="" height="50px" onclick="lock_unlock()">
+                                    <img src="./images/lock_0.png" id="lock" height="50px">
                                 </div>
                                 <div class="col-md-10 d-flex align-items-center">
-                                    <div class="form-group w-100">
-                                        <input name="password" type="password" class="form-control" id="password" placeholder="Пароль">
+                                    <div class="form-group w-100 password">
+                                        <input name="password" type="password" class="form-control field" id="pass-input" placeholder="Пароль">
+                                        <a href="#" class="pass-control" id="pass-control"></a>
                                     </div>
                                 </div>
                             </div>

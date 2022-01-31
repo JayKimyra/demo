@@ -5,21 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
-@Table(name="Users")
+@Table(name = "Users")
 public class User {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true,length = 250)
+    @Column(unique = true, length = 250)
     private String login;
-    @Column
-    private String role;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
     @Column
     private String firstname;
     @Column
@@ -27,8 +29,10 @@ public class User {
     @Column
     private String password;
 
-    public User(){}
-    public User(String login, String firstname, String lastname, String password,String role) throws Exception {
+    public User() {
+    }
+
+    public User(String login, String firstname, String lastname, String password, Role role) throws Exception {
         this.setLogin(login);
         this.setFirstname(firstname);
         this.setLastname(lastname);
@@ -38,14 +42,14 @@ public class User {
     }
 
     public void setFirstname(String firstname) {
-        if (firstname.length() > 1){
-            this.firstname = firstname.substring(0,1).toUpperCase() + firstname.substring(1);
+        if (firstname.length() > 1) {
+            this.firstname = firstname.substring(0, 1).toUpperCase() + firstname.substring(1);
         }
     }
 
     public void setLastname(String lastname) {
-        if (lastname.length() > 1){
-            this.lastname = lastname.substring(0,1).toUpperCase() + lastname.substring(1);
+        if (lastname.length() > 1) {
+            this.lastname = lastname.substring(0, 1).toUpperCase() + lastname.substring(1);
         }
     }
 
@@ -54,11 +58,23 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
+                ", role='" + role + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(login, user.login) && Objects.equals(role, user.role) && Objects.equals(firstname, user.firstname) && Objects.equals(lastname, user.lastname) && Objects.equals(password, user.password);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, role, firstname, lastname, password);
+    }
 }

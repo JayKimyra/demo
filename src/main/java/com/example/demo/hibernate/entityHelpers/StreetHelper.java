@@ -66,36 +66,6 @@ public class StreetHelper {
         return street;
     }
 
-    //смотрим на колонку field и выбираем те поля для которых критерий равен criteria
-    static List<Street> getListByParameter(String field, String criteria){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Street> personCriteria = cb.createQuery(Street.class);
-        Root<Street> personRoot = personCriteria.from(Street.class);
-        personCriteria.select(personRoot);
-        personCriteria.where(cb.equal(personRoot.get(field),criteria));
-
-
-        return session.createQuery(personCriteria)
-                .getResultList();
-    }
-
-    public static Street getFirstByParameter(String field, String criteria){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.getTransaction().begin();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Street> personCriteria = cb.createQuery(Street.class);
-        Root<Street> personRoot = personCriteria.from(Street.class);
-        personCriteria.select(personRoot);
-        personCriteria.where(cb.equal(personRoot.get(field),criteria));
-
-
-        return session.createQuery(personCriteria)
-                .getResultList().get(0);
-    }
-
-
 
     public static List<Street> getFullList(){
         Session session = HibernateUtil.getSessionFactory().openSession();

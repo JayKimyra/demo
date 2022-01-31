@@ -3,6 +3,7 @@ package servlets.TONAME;
 import com.example.demo.Formatter;
 import com.example.demo.PdfManager;
 import com.example.demo.hibernate.entities.Record;
+import com.example.demo.hibernate.entities.Role;
 import com.example.demo.hibernate.entities.Street;
 import com.example.demo.hibernate.entities.User;
 import com.example.demo.hibernate.entityHelpers.RecordHelper;
@@ -27,7 +28,7 @@ public class SendRecord extends HttpServlet {
         //Получаем Улицу, дом, квартиру
         System.out.println("SendRecord");
         User user = (User) request.getSession().getAttribute("user");
-        if (Objects.equals(user.getRole(), "")) return;
+        if (Objects.equals(user.getRole(), Role.NO_ROLE)) return;
 
 
         //Parts -> Files
@@ -41,7 +42,7 @@ public class SendRecord extends HttpServlet {
         String home = Formatter.ISOtoUTF(request.getParameter("home"));
         String flat = Formatter.ISOtoUTF(request.getParameter("flat"));
         //Название папки, в которую сохраним файл(сегодняшняя дата + название улицы)
-        String directory = Formatter.getDirectoryName(new LocalDate(), streetId);
+        String directory = Formatter.getDirectoryName(new LocalDate(), street);
         // Какое будет название файла
         String fileName = Formatter.getFileName(street.getName(), home, flat);
         System.out.println(directory);

@@ -1,6 +1,8 @@
 package servlets.TONAME;
 
 import com.example.demo.hibernate.entities.Record;
+import com.example.demo.hibernate.entities.Role;
+import com.example.demo.hibernate.entities.User;
 import com.example.demo.hibernate.entityHelpers.RecordHelper;
 import com.example.demo.hibernate.entityHelpers.StreetHelper;
 import com.example.demo.hibernate.entityHelpers.UserHelper;
@@ -34,10 +36,11 @@ public class GetDataFromServlet extends HttpServlet {
         String stringDateEnd = request.getParameter("date-end");
         String stringStreetId = request.getParameter("street-id");
         String stringUserId = request.getParameter("user-id");
+        System.out.println(stringDateBegin);
         System.out.println(stringDateEnd);
         try{
             dateBegin = Objects.equals(stringDateBegin, "") ? null : new Timestamp(Date.valueOf(stringDateBegin).getTime());
-            dateEnd = Objects.equals(stringDateEnd, "") ? null : new Timestamp(Date.valueOf(stringDateEnd).getTime());
+            dateEnd = Objects.equals(stringDateEnd, "") ? null : new Timestamp(Date.valueOf(stringDateEnd).getTime() + 24*60*60*1000);
             streetId = Objects.equals(stringStreetId, "all") ? null : Long.parseLong(stringStreetId);
             userId = Objects.equals(stringUserId, "all") ? null : Long.parseLong(stringUserId);
         }
@@ -50,33 +53,34 @@ public class GetDataFromServlet extends HttpServlet {
 
 
 
-        /*User worker;
         User user = (User) request.getSession().getAttribute("user");
-        if (Objects.equals(user.getRole(), "admin")){
-            worker = UserHelper.getById(Long.valueOf(stringUserId));
+        if (!Objects.equals(user.getRole(), Role.ADMIN) && !(Objects.equals(user.getRole(), Role.MANAGER))){
+            if (!Objects.equals(userId, user.getId())){
+                System.out.println(Objects.equals(userId, user.getId()));
+                System.out.println(userId);
+                System.out.println(user.getId());
+                System.out.println("Пользователь видит только свои записи!");
+                response.sendError(403);
+                return;
+            }
         }
-        else if (Objects.equals(user.getRole(), "redactor")){
-            worker = UserHelper.getById(Long.valueOf(stringUserId));
-        }
-        else if (Objects.equals(user.getRole(), "worker")){
-            worker = user;
-        }
-        else{
-            response.sendError(403);
-            return;
-        }*/
-
 
         List<Record> records = RecordHelper.getListByMultipleParameter(new HashMap<Object, Object>() {
             {
-                put("streetId", streetId);
-                put("userId", userId);
+                put("street", streetId != null ? StreetHelper.getById(streetId) : null);//TODO СДЕЛАТЬ КРАСИВЕЕ
+                put("user", userId != null ? UserHelper.getById(userId) : null);
                 put("dateBegin", dateBegin);
                 put("dateEnd", dateEnd);
             }
         });
 
-        System.out.println(records.size());
+        if (records == null || records.isEmpty()){
+            System.out.println("Нет подходящих результатов");
+            response.addHeader("error_message","Нет подходящих результатов");
+            response.sendError(404);
+            return;
+        }
+
         PrintWriter writer = response.getWriter();
         records.forEach(value -> writer.write("<tr>" +
                 "<th>" + value.getId() + "</th>" +
@@ -85,7 +89,8 @@ public class GetDataFromServlet extends HttpServlet {
                 "<td > " +  value.getHome() + " </td >" +
                 "<td > " +  value.getFlat() + " </td >" +
                 "<td > " + value.getUser().getFirstname() + " " + value.getUser().getLastname() +" </td >" +
-                "<td > Скачать / Удалить / Заменить </td >" + "</tr>"
+                "<td>" + "<button onclick=\"download("+ value.getId() +")\">Скачать</button>" +"/Удалить/Заменить" + "</td>" +
+                "</tr>"
 
         ));
 

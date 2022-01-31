@@ -3,6 +3,7 @@ package com.example.demo.hibernate.entityHelpers;
 import com.example.demo.hibernate.HibernateUtil;
 import com.example.demo.hibernate.entities.Record;
 import com.example.demo.hibernate.entities.Street;
+import com.example.demo.hibernate.entities.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -74,13 +75,15 @@ public class RecordHelper {
         CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
         Root<Record> personRoot = personCriteria.from(Record.class);
 
-        if (map.get("userId") != null) {
+        if (map.get("user") != null) {
+            System.out.println(map.get("user"));
             predicates.add(
-                    cb.equal(personRoot.get("userId"), map.get("userId")));
+                    cb.equal(personRoot.get("user"), map.get("user")));
         }
-        if (map.get("streetId") != null) {
+        //TODO ИСПРАВИТЬ
+        if (map.get("street") != null) {
             predicates.add(
-                    cb.equal(personRoot.get("streetId"), map.get("streetId")));
+                    cb.equal(personRoot.get("street"), map.get("street")));
         }
         if (map.get("dateBegin") != null) {
             predicates.add(
@@ -88,7 +91,7 @@ public class RecordHelper {
         }
         if (map.get("dateEnd") != null) {
             predicates.add(
-                    cb.lessThan(personRoot.<Timestamp>get("date"), (Timestamp) map.get("dateBegin")));
+                    cb.lessThan(personRoot.get("date"), (Timestamp) map.get("dateEnd")));
         }
 
         if (predicates.isEmpty()) return getFullList();
@@ -111,14 +114,24 @@ public class RecordHelper {
     }
 
     public static List<Record> getFullList(){
+        List<Record> result = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
-        Root<Record> personRoot = personCriteria.from(Record.class);
-        personCriteria.select(personRoot);
-        List<Record> result = session.createQuery(personCriteria).getResultList();
-        session.close();
+        Transaction transaction = session.getTransaction();
+        try{
+            transaction.begin();
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Record> personCriteria = cb.createQuery(Record.class);
+            Root<Record> personRoot = personCriteria.from(Record.class);
+            personCriteria.select(personRoot);
+            result = session.createQuery(personCriteria).getResultList();
+        }catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        }
+        finally {
+
+            session.close();
+        }
         return result;
     }
 }

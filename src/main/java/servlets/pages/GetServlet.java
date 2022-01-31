@@ -20,26 +20,7 @@ public class GetServlet extends HttpServlet {
             response.sendError(403);
         }
         else{
-            if (Objects.equals(user.getRole(), "admin")){
-                request.getRequestDispatcher("WEB-INF/get.jsp").include(request, response);
-            }
+            request.getRequestDispatcher("WEB-INF/get.jsp").include(request, response);
         }
-    }
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        /*PrintWriter writer = response.getWriter();
-        records.forEach(value -> writer.write("<tr>" +
-                "<th scope=\"row\">" + name + "</th>" +
-                    "<td > " +  value.getDate() + " </td >" +
-                        "<td > " +  value.getStreetId() + " </td >" +
-                        "<td > " +  value.getPath() + " </td >" +
-                        "<td > " +  value.getPath() + " </td >" +
-                        "<td > " +  value.getUserId() + " </td >" +
-                        "<td > Скачать / Удалить / Заменить </td >" + "</tr>"
-
-        ));
-        response.setContentType("text/plain");*/
-        System.out.println("someservlet");
     }
 }
