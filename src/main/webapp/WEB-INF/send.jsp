@@ -26,6 +26,19 @@
 
                 <form method="post" id="form" enctype="multipart/form-data">
                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-2 d-flex justify-content-center text-center">Выберите дату: </div>
+                            <div class="col-md-10 d-flex align-items-center">
+                                <div class="form-group w-100">
+                                    <div class="container-fluid">
+                                        <input class="form-control" type="datetime-local" name="datetime" id="datetime">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container-fluid">
                         <div class="form-group w-100">
                             <input name="files" type="file" class="form-control field" id="files" multiple>
                         </div>

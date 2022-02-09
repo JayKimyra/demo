@@ -2,10 +2,8 @@ package com.example.demo;
 
 
 import com.example.demo.hibernate.entities.Street;
-import org.joda.time.LocalDate;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.mail.search.SearchTerm;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -14,9 +12,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -25,7 +25,7 @@ public class Formatter {
         return getFullLocation(street,home,flat);
     }
 
-    public static String getDirectoryName(LocalDate date, Street street){
+    public static String getDirectoryName(Date date, Street street){
         StringBuilder sb = new StringBuilder();
         sb.append(date.toString());
         sb.append("\\");
@@ -41,26 +41,18 @@ public class Formatter {
     public static String ISOtoUTF(String str){
         return new String(str.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
     }
-    public static List<File> getFilesFromParts(HttpServletRequest request, HttpServletResponse response) {
-        ArrayList<File> files = new ArrayList<>();
+
+    public static Timestamp StringToTimestamp(String str){
+        if (str == null || str.equals("")) return new Timestamp(System.currentTimeMillis());
         try {
-            request.getParts().forEach(System.out::println);
-            List<Part> fileParts = request.getParts().stream().filter((part) -> "files".equals(part.getName())).toList();
-            System.out.println("Found " + fileParts.size() + " files:");
-            for (Part filePart : fileParts){
-                String imgName = Formatter.ISOtoUTF(Paths.get(filePart.getSubmittedFileName()).getFileName().toString());
-                InputStream fileContent = filePart.getInputStream();
-                File targetFile = new File("D:\\TEST\\" + filePart.getSubmittedFileName());
-                System.out.println("\t" + imgName);
-                Files.copy(fileContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                files.add(targetFile);
+            if (StringUtils.countMatches(str, ":") == 1) {
+                str += ":00";
             }
-
-        } catch (IOException | ServletException | NullPointerException e) {
-            System.out.println(e);
+            return Timestamp.valueOf(str.replace("T"," "));
         }
-
-        return files;
+        catch (Exception e){
+            return new Timestamp(System.currentTimeMillis());
+        }
     }
 
 
@@ -79,8 +71,8 @@ public class Formatter {
                 continue;
             }
             FileInputStream fis = new FileInputStream(file);
-
-            zout.putNextEntry(new ZipEntry(file.getPath()));
+            System.out.println(getZipEntryName(file,2,new StringBuilder()));
+            zout.putNextEntry(new ZipEntry(getZipEntryName(file,2,new StringBuilder())));
 
             byte[] buffer = new byte[4048];
             int length;
@@ -95,6 +87,22 @@ public class Formatter {
         System.out.println("Zip файл создан!");
     }
 
+    public static String getZipEntryName(File file,int depth,StringBuilder sb) {
+        if (file.isDirectory()) sb.insert(0,"\\");
+        sb.insert(0,file.getName());
+        if (depth == 0){
+            return sb.toString();
+        }
+        return getZipEntryName(file.getParentFile(),depth - 1, sb);
+    }
+
+    public static void main(String[] args) throws Exception {
+        /*List<File> files = new ArrayList<>();
+        files.add(new File("D:\\TEST\\2022-02-01\\Абитуриентский переулок\\Абитуриентский переулок, д. были времена, отлично было.pdf"));
+        Zip(files,"zipped_file");*/
+        ZipAllFiles("D:\\TEST\\","D:\\name.zip");
+
+    }
     static public void ZipAllFiles(String source_dir, String zip_file) throws Exception
     {
         // Cоздание объекта ZipOutputStream из FileOutputStream
@@ -119,7 +127,7 @@ public class Formatter {
     {
         File[] files = fileSource.listFiles();
         System.out.println("Добавление директории <" + fileSource.getName() + ">");
-        for(int i = 0; i < files.length; i++) {
+        for(int i = 0; i < Objects.requireNonNull(files).length; i++) {
             // Если file является директорией, то рекурсивно вызываем
             // метод addDirectory
             if(files[i].isDirectory()) {
@@ -130,7 +138,7 @@ public class Formatter {
 
             FileInputStream fis = new FileInputStream(files[i]);
 
-            zout.putNextEntry(new ZipEntry(files[i].getPath()));
+            zout.putNextEntry(new ZipEntry(getZipEntryName(files[i],2,new StringBuilder())));
 
             byte[] buffer = new byte[4048];
             int length;

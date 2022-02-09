@@ -31,6 +31,25 @@ public class RecordHelper {
             session.close();
         }
     }
+
+    public static boolean delete(Record record){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        try{
+            session.delete(record);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+            //todo: Отправить ошибку куда-либо!
+            return false;
+        }
+        finally {
+            session.close();
+        }
+    }
+
     static boolean saveList(List<Record> records){
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();

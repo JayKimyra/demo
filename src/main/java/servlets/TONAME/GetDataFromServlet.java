@@ -89,7 +89,11 @@ public class GetDataFromServlet extends HttpServlet {
                 "<td > " +  value.getHome() + " </td >" +
                 "<td > " +  value.getFlat() + " </td >" +
                 "<td > " + value.getUser().getFirstname() + " " + value.getUser().getLastname() +" </td >" +
-                "<td>" + "<button onclick=\"download("+ value.getId() +")\">Скачать</button>" +"/Удалить/Заменить" + "</td>" +
+                "<td>" +
+                "<button onclick=\"download("+ value.getId() +")\">Скачать</button>" +
+                "<button onclick=\"deletePost("+ value.getId() +")\" type=\"submit\" >Удалить</button>" +
+                "<button onclick=\"changePage("+ value.getId() +")\" type=\"submit\" >Изменить</button>" +
+                "</td>" +
                 "</tr>"
 
         ));

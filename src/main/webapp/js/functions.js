@@ -221,3 +221,47 @@ function downloadAllPosts() {
 
     window.open('downloadfiles?' + req, '_blank');
 }
+
+function deletePost(id) {
+    event.preventDefault();
+
+    console.log("Method deletePost");
+
+    $.ajax({
+        data: {'recordId': id},
+        url: 'deletefileservlet',
+        method: 'POST',
+        success: function (resultText) {
+            alert("Delete was success!");
+        },
+        error: function () {
+            alert("Method deletePost is broken!")
+        }
+    });
+}
+
+function changePage(id) {
+    event.preventDefault();
+
+    console.log(id)
+
+    window.open('change?recordId=' + id, '_blank');
+}
+
+function changePost() {
+    event.preventDefault();
+
+    console.log("Method changePost");
+
+    $.ajax({
+        data: formData,
+        url: 'changefileservlet',
+        method: 'POST',
+        success: function (resultText) {
+            alert("Change was success!");
+        },
+        error: function () {
+            alert("Change is broken!")
+        }
+    });
+}

@@ -27,6 +27,7 @@
       <option name="excludeList">
         <list>
           <option value="mysql:mysql-connector-java" />
+          <option value="javax.servlet:javax.servlet-api" />
         </list>
       </option>
     </inspection_tool>

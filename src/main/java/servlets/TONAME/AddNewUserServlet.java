@@ -1,19 +1,10 @@
 package servlets.TONAME;
 
-import com.example.demo.Formatter;
-import com.example.demo.PdfManager;
-import com.example.demo.hibernate.entities.Record;
 import com.example.demo.hibernate.entities.Role;
-import com.example.demo.hibernate.entities.Street;
 import com.example.demo.hibernate.entities.User;
-import com.example.demo.hibernate.entityHelpers.RecordHelper;
-import com.example.demo.hibernate.entityHelpers.StreetHelper;
 import com.example.demo.hibernate.entityHelpers.UserHelper;
-import org.joda.time.LocalDate;
 
 import java.io.*;
-import java.sql.Timestamp;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import javax.servlet.http.*;

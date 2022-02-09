@@ -33,11 +33,9 @@ public class PdfManager {
                         PDImageXObject pdImage = PDImageXObject.createFromFileByExtension(file, document);
                         contents.drawImage(pdImage, 0, 0, MAX_WIDTH, MAX_HEIGHT);
                     } catch (IOException e) {
-                        System.out.println("PM1");
                         System.out.println(e);
                     }
                 } catch (IOException e) {
-                    System.out.println("PM2");
                     e.printStackTrace();
                 }
             }
